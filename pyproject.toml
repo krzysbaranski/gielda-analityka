@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "plot-emakler"
+version = "0.1.0"
+description = "Run plot_emakler.py with pandas and matplotlib"
+authors = [
+  { name = "Krzysztof" }
+]
+requires-python = ">=3.9"
+dependencies = [
+  "pandas",
+  "matplotlib"
+]
+
+[project.scripts]
+plot-emakler = "plot_emakler:main"
