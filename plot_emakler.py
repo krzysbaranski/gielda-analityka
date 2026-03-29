@@ -1,9 +1,10 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import re
-import matplotlib
+from pathlib import Path
+
 # Ścieżka do pliku CSV
-file_path = 'eMAKLER_portfel_wyceny_historyczne.Csv'
+file_path = Path(__file__).parent / 'eMAKLER_portfel_wyceny_historyczne.Csv'
 
 #matplotlib.use("GTK4Agg")   # albo Qt5Agg jeśli masz Qt
 
@@ -39,7 +40,7 @@ portfolio_df = pd.concat(all_data)
 portfolio_df['Wartość_jednostkowa'] = portfolio_df['Wartość'] / portfolio_df['Liczba']
 
 # Pivot do szerokiego formatu
-pivot_value_per_unit = portfolio_df.pivot(index='Date', columns='Papier', values='Wartość_jednostkowa').fillna(0)
+pivot_value_per_unit = portfolio_df.pivot(index='Date', columns='Papier', values='Wartość_jednostkowa')
 pivot_quantity = portfolio_df.pivot(index='Date', columns='Papier', values='Liczba').fillna(0)
 pivot_value_total = portfolio_df.pivot(index='Date', columns='Papier', values='Wartość').fillna(0)
 pivot_value_total['Total'] = pivot_value_total.sum(axis=1)
